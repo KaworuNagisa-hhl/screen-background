@@ -1,7 +1,8 @@
-import { getSwiftUIPalette, swiftUIColorWithOpacity, SwiftUITone } from 'theme'
+import { getSwiftUIPalette, swiftUIColorWithOpacity, SwiftUIComponentConfig, SwiftUITone } from 'theme'
 
 @Component
 export struct SwiftUIScreenBackground {
+  @Prop config: SwiftUIComponentConfig = new SwiftUIComponentConfig()
   @Prop tone: SwiftUITone = SwiftUITone.GlassBlack
   @Prop componentWidth: Length = '100%'
   @Prop componentHeight: Length = '100%'
@@ -11,20 +12,38 @@ export struct SwiftUIScreenBackground {
   @Prop accentGlowColor: ResourceColor = '#00000000'
   @Prop showDecorations: boolean = true
 
+  private resolvedTone(): SwiftUITone {
+    return this.config.tone === undefined ? this.tone : this.config.tone
+  }
+
+  private resolvedWidth(): Length {
+    return this.config.width === undefined ? this.componentWidth : this.config.width
+  }
+
+  private resolvedHeight(): Length {
+    return this.config.height === undefined ? this.componentHeight : this.config.height
+  }
+
   private resolvedBackgroundColor(): ResourceColor {
-    return this.customBackgroundColor === '#00000000' ? getSwiftUIPalette(this.tone).background : this.customBackgroundColor
+    if (this.config.fillColor) {
+      return this.config.fillColor
+    }
+    return this.customBackgroundColor === '#00000000' ? getSwiftUIPalette(this.resolvedTone()).background : this.customBackgroundColor
   }
 
   private resolvedTopGlowColor(): ResourceColor {
-    return this.topGlowColor === '#00000000' ? getSwiftUIPalette(this.tone).surfaceBlue : this.topGlowColor
+    return this.topGlowColor === '#00000000' ? getSwiftUIPalette(this.resolvedTone()).surfaceBlue : this.topGlowColor
   }
 
   private resolvedMiddleGlowColor(): ResourceColor {
-    return this.middleGlowColor === '#00000000' ? getSwiftUIPalette(this.tone).surfaceMuted : this.middleGlowColor
+    return this.middleGlowColor === '#00000000' ? getSwiftUIPalette(this.resolvedTone()).surfaceMuted : this.middleGlowColor
   }
 
   private resolvedAccentGlowColor(): ResourceColor {
-    return this.accentGlowColor === '#00000000' ? getSwiftUIPalette(this.tone).surfaceAmber : this.accentGlowColor
+    if (this.config.accentColor) {
+      return this.config.accentColor
+    }
+    return this.accentGlowColor === '#00000000' ? getSwiftUIPalette(this.resolvedTone()).surfaceAmber : this.accentGlowColor
   }
 
   build() {
@@ -41,7 +60,7 @@ export struct SwiftUIScreenBackground {
           .linearGradient({
             direction: GradientDirection.RightBottom,
             colors: [
-              [swiftUIColorWithOpacity(getSwiftUIPalette(this.tone).backgroundElevated, 0.88), 0.0],
+              [swiftUIColorWithOpacity(getSwiftUIPalette(this.resolvedTone()).backgroundElevated, 0.88), 0.0],
               [swiftUIColorWithOpacity(this.resolvedBackgroundColor(), 0.96), 0.42],
               [swiftUIColorWithOpacity(this.resolvedTopGlowColor(), 0.24), 0.76],
               [swiftUIColorWithOpacity(this.resolvedBackgroundColor(), 0.0), 1.0]
@@ -79,14 +98,14 @@ export struct SwiftUIScreenBackground {
             colors: [
               [swiftUIColorWithOpacity(this.resolvedAccentGlowColor(), 0.0), 0.0],
               [swiftUIColorWithOpacity(this.resolvedAccentGlowColor(), 0.16), 0.44],
-              [swiftUIColorWithOpacity(getSwiftUIPalette(this.tone).accent, 0.10), 1.0]
+              [swiftUIColorWithOpacity(getSwiftUIPalette(this.resolvedTone()).accent, 0.10), 1.0]
             ]
           })
           .rotate({ angle: -4 })
           .translate({ y: 560 })
       }
     }
-    .width(this.componentWidth)
-    .height(this.componentHeight)
+    .width(this.resolvedWidth())
+    .height(this.resolvedHeight())
   }
 }
