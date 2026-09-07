@@ -1,0 +1,9 @@
+{
+  "module": {
+    "name": "screen_background",
+    "type": "har",
+    "deviceTypes": [
+      "default"
+    ]
+  }
+}
