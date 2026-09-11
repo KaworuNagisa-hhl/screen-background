@@ -14,16 +14,6 @@
 ohpm install screen-background
 ```
 
-本地源码依赖：
-
-```json5
-{
-  "dependencies": {
-    "screen-background": "file:../screen-background",
-    "theme": "file:../theme"
-  }
-}
-```
 
 ## 正常使用样式
 
