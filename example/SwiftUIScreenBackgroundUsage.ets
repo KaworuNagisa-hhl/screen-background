@@ -1,4 +1,4 @@
-import { SwiftUIScreenBackground } from 'screen-background'
+import { SwiftUIScreenBackground } from '@kaworunagisa_hhl/screen-background'
 
 @Component
 export struct SwiftUIScreenBackgroundUsage {

@@ -1,6 +1,6 @@
 {
   "modelVersion": "6.0.2",
-  "name": "screen-background",
+  "name": "@kaworunagisa_hhl/screen-background",
   "version": "1.0.3",
   "description": "OpenHarmony/HarmonyOS ArkUI like-ios 页面背景组件，用于构建深色、纯色与毛玻璃风格页面底层。提供 homepage、example 示例目录与清晰的 README 使用说明。",
   "main": "Index.ets",
@@ -13,10 +13,14 @@
     "HarmonyOS",
     "ArkUI",
     "like-ios",
-    "frosted-glass",
-    "component"
+    "ios-like",
+    "kaworunagisa_hhl",
+    "background",
+    "screen",
+    "gradient",
+    "glass"
   ],
   "dependencies": {
-    "theme": "file:../theme"
+    "@kaworunagisa_hhl/theme": "file:../theme"
   }
 }
