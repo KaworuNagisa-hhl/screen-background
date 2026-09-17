@@ -1,4 +1,4 @@
-import { getSwiftUIPalette, swiftUIColorWithOpacity, SwiftUIComponentConfig, SwiftUITone } from '@kaworunagisa_hhl/theme'
+import { getSwiftUIPalette, swiftUIColorWithOpacity, SwiftUIComponentConfig, SwiftUITone } from 'theme'
 
 @Component
 export struct SwiftUIScreenBackground {

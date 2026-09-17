@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@ohos/hypium'
-import { getSwiftUIPalette, SwiftUITone } from '@kaworunagisa_hhl/theme'
+import { getSwiftUIPalette, SwiftUITone } from 'theme'
 
 export default function localUnitTest() {
   describe('SwiftUIScreenBackground', () => {
